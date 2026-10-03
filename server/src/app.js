@@ -2,6 +2,8 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { errorHandler } from './middleware/errors.js';
+import authRoutes from './modules/auth/auth.routes.js';
 
 export const app = express();
 
@@ -13,3 +15,7 @@ app.use(cookieParser());
 app.get('/health', (req, res) => {
   res.json({ ok: true });
 });
+
+app.use('/api/auth', authRoutes);
+
+app.use(errorHandler);
