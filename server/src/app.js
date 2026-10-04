@@ -5,7 +5,9 @@ import cookieParser from 'cookie-parser';
 import { errorHandler } from './middleware/errors.js';
 import authRoutes from './modules/auth/auth.routes.js';
 import siteRoutes from './modules/sites/sites.routes.js';
-
+import scanRoutes from './modules/scans/scans.routes.js';
+import orgRoutes from './modules/orgs/orgs.routes.js';
+import reportRoutes from './modules/reports/reports.routes.js';
 export const app = express();
 
 app.use(helmet());
@@ -19,5 +21,8 @@ app.get('/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/sites', siteRoutes);
+app.use('/api', scanRoutes);
+app.use('/api', reportRoutes);
+app.use('/api/org', orgRoutes);
 
 app.use(errorHandler);
