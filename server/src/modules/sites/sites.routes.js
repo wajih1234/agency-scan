@@ -21,4 +21,9 @@ router.delete('/:id', async (req, res) => {
   res.status(204).end();
 });
 
+router.post("/:id/verify", async (req, res) => {
+  const site = await sites.verifySite(req.user.orgId, req.params.id);
+  res.json({ site });
+});
+
 export default router;
